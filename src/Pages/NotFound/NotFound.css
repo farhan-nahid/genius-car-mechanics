@@ -1,0 +1,7 @@
+.not__found {
+  height: 85vh;
+  width: 100%;
+  background-image: url('../../assets/images/404.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}

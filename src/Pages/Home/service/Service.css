@@ -1,0 +1,15 @@
+.card {
+  background-color: rgb(226, 241, 241);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 0;
+}
+
+.card__content {
+  padding: 20px;
+}
+
+.card__content h3,
+.card__content h5 {
+  text-align: center;
+}

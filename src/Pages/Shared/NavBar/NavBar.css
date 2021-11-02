@@ -1,0 +1,7 @@
+.nav__container {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(226, 241, 241);
+}

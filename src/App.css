@@ -27,7 +27,7 @@ img {
 
 .section__title {
   text-align: center;
-  margin: 70px 0;
+  margin-bottom: 50px;
 }
 
 @media only screen and (max-width: 1550px) {
