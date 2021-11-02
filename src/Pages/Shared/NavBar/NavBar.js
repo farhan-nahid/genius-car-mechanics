@@ -10,7 +10,7 @@ const NavBar = () => {
       <Navbar expand='lg'>
         <div className='container'>
           <Navbar.Brand as={NavLink} to='/'>
-            React-Bootstrap
+            Genius Car Mechanics
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
