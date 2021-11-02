@@ -1,7 +1,10 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router';
 import './Service.css';
 
-const Service = ({ service: { name, price, description, img } }) => {
+const Service = ({ service: { id, name, price, description, img } }) => {
+  const history = useHistory();
   return (
     <div className='card'>
       <img src={img} alt={name} />
@@ -9,6 +12,12 @@ const Service = ({ service: { name, price, description, img } }) => {
         <h3>{name}</h3>
         <h5>Price: {price}</h5>
         <p>{description}</p>
+        <Button
+          variant='warning'
+          onClick={() => history.push(`/booking/${id}`)}
+        >
+          Book {name.toLowerCase()}
+        </Button>
       </div>
     </div>
   );

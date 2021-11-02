@@ -15,7 +15,7 @@ const Services = () => {
   }, []);
 
   return (
-    <section className='container section__margin'>
+    <section className='container section__margin' id='services'>
       <h2 className='section__title'>Our Services</h2>
       {services.length ? (
         <div className='grid__container '>

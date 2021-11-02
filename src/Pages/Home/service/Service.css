@@ -7,6 +7,7 @@
 
 .card__content {
   padding: 20px;
+  text-align: center;
 }
 
 .card__content h3,

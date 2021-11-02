@@ -36,7 +36,7 @@ const experts = [
 
 const Experts = () => {
   return (
-    <section className='container section__margin'>
+    <section className='container section__margin' id='experts'>
       <h2 className='section__title'>Our Experts</h2>
       <div className='grid__container'>
         {
