@@ -12,6 +12,7 @@ import initializeAuthentication from '../Pages/Auth/Firebase/firebase.init';
 const useFirebase = () => {
   initializeAuthentication();
   const [loggedInUser, setLoggedInUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const auth = getAuth();
 
@@ -22,6 +23,7 @@ const useFirebase = () => {
   // google sign in function
 
   const signInUsingGoogle = () => {
+    setIsLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
@@ -30,7 +32,8 @@ const useFirebase = () => {
   const logOut = () => {
     signOut(auth)
       .then(() => setLoggedInUser(null))
-      .catch((err) => toast.error(err.message));
+      .catch((err) => toast.error(err.message))
+      .finally(() => setIsLoading(false));
   };
 
   // observe user state change
@@ -38,11 +41,18 @@ const useFirebase = () => {
   useEffect(() => {
     const unSubscribed = onAuthStateChanged(auth, (user) => {
       user ? setLoggedInUser(user) : setLoggedInUser(null);
+      setIsLoading(false);
     });
     return () => unSubscribed;
   }, [auth]);
 
-  return { loggedInUser, signInUsingGoogle, logOut };
+  return {
+    loggedInUser,
+    signInUsingGoogle,
+    logOut,
+    setIsLoading,
+    isLoading,
+  };
 };
 
 export default useFirebase;

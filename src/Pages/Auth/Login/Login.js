@@ -5,17 +5,16 @@ import { useHistory, useLocation } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
-  const { signInUsingGoogle } = useAuth();
+  const { signInUsingGoogle, setIsLoading } = useAuth();
   const history = useHistory();
   const location = useLocation();
-  console.log(location);
-  const redirect_URI = location.state?.from || '/';
+  const redirect_URI = location.state.from || '/';
 
   const handelGoogleSignIn = () => {
     signInUsingGoogle()
-      .then(() => history.push(redirect_URI))
-      .catch((err) => toast.error(err.message));
-    // .finally()
+      .then(history.push(redirect_URI))
+      .catch((err) => toast.error(err.message))
+      .finally(() => setIsLoading(false));
   };
 
   return (
