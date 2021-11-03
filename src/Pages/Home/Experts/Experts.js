@@ -1,16 +1,19 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
+import toast from 'react-hot-toast';
 import Expert from '../Expert/Expert';
 
 const Experts = () => {
   const [experts, setExperts] = useState([]);
 
   useEffect(() => {
-    fetch(
-      'https://raw.githubusercontent.com/farhan-nahid/genius-car-mechanics-client/main/src/assets/fakeData/experts.json'
-    )
-      .then((res) => res.json())
-      .then((data) => setExperts(data));
+    axios
+      .get(
+        'https://raw.githubusercontent.com/farhan-nahid/genius-car-mechanics-client/main/src/assets/fakeData/experts.json'
+      )
+      .then((res) => setExperts(res.data))
+      .catch((err) => toast.error(err.message));
   }, []);
 
   return (

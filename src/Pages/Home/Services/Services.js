@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
+import toast from 'react-hot-toast';
 import Service from '../service/Service';
 import './Services.css';
 
@@ -7,11 +9,12 @@ const Services = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch(
-      'https://raw.githubusercontent.com/farhan-nahid/genius-car-mechanics-client/main/src/assets/fakeData/services.json'
-    )
-      .then((res) => res.json())
-      .then((data) => setServices(data));
+    axios
+      .get(
+        'https://raw.githubusercontent.com/farhan-nahid/genius-car-mechanics-client/main/src/assets/fakeData/services.json'
+      )
+      .then((res) => setServices(res.data))
+      .catch((err) => toast.error(err.message));
   }, []);
 
   return (
