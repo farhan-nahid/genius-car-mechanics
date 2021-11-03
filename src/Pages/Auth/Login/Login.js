@@ -1,9 +1,25 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
+import toast from 'react-hot-toast';
+import { useHistory, useLocation } from 'react-router';
+import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
+  const { signInUsingGoogle } = useAuth();
+  const history = useHistory();
+  const location = useLocation();
+  console.log(location);
+  const redirect_URI = location.state?.from || '/';
+
+  const handelGoogleSignIn = () => {
+    signInUsingGoogle()
+      .then(() => history.push(redirect_URI))
+      .catch((err) => toast.error(err.message));
+    // .finally()
+  };
+
   return (
-    <section className='container '>
+    <section className='container'>
       <div className='section__margin border w-75 p-5 rounded shadow'>
         <Form>
           <Form.Group className='mb-3' controlId='formBasicEmail'>
@@ -22,12 +38,14 @@ const Login = () => {
             <Form.Check type='checkbox' label='Check me out' />
           </Form.Group>
           <Button variant='primary' type='submit'>
-            Submit
+            Log In
           </Button>
         </Form>
       </div>
       <div className='text-center section__margin'>
-        <Button variant='warning'>Google Sign In</Button>
+        <Button variant='warning' onClick={handelGoogleSignIn}>
+          Google Sign In
+        </Button>
       </div>
     </section>
   );

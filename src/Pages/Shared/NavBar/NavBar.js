@@ -1,10 +1,12 @@
 import React from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Button, Nav, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import useAuth from '../../../hooks/useAuth';
 import './NavBar.css';
 
 const NavBar = () => {
+  const { logOut, loggedInUser } = useAuth();
   return (
     <nav>
       <Navbar expand='lg'>
@@ -27,9 +29,20 @@ const NavBar = () => {
               <Nav.Link as={NavLink} to='/booking/:id'>
                 Booking
               </Nav.Link>
-              <Nav.Link as={NavLink} to='/login'>
-                Login
-              </Nav.Link>
+              {!loggedInUser ? (
+                <Nav.Link as={NavLink} to='/login'>
+                  Login
+                </Nav.Link>
+              ) : (
+                <>
+                  <Nav.Link>{loggedInUser.displayName}</Nav.Link>
+                  <Nav.Link>
+                    <Button onClick={logOut} variant='danger'>
+                      LogOut
+                    </Button>
+                  </Nav.Link>
+                </>
+              )}
             </Nav>
           </Navbar.Collapse>
         </div>
