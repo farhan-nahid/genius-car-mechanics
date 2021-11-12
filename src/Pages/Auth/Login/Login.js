@@ -8,11 +8,11 @@ const Login = () => {
   const { signInUsingGoogle, setIsLoading } = useAuth();
   const history = useHistory();
   const location = useLocation();
-  const redirect_URI = location.state.from || '/';
+  const redirect_URI = location.state?.from || '/';
 
   const handelGoogleSignIn = () => {
     signInUsingGoogle()
-      .then(history.push(redirect_URI))
+      .then(() => history.push(redirect_URI))
       .catch((err) => toast.error(err.message))
       .finally(() => setIsLoading(false));
   };
