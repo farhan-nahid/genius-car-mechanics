@@ -21,10 +21,16 @@ function App() {
           <Route exact path='/' component={Home} />
           <Route path='/home' component={Home} />
           <Route path='/login' component={Login} />
-          <Route path='/add-service' component={AddService} />
-          <Route path='/manage-service' component={ManageService} />
+          {/* <Route path='/add-service' component={AddService} />
+          <Route path='/manage-service' component={ManageService} /> */}
           <PrivateRoute path='/booking/:serviceId'>
             <Booking />
+          </PrivateRoute>
+          <PrivateRoute path='/manage-service'>
+            <ManageService />
+          </PrivateRoute>
+          <PrivateRoute path='/add-service'>
+            <AddService />
           </PrivateRoute>
           <Route path='*' component={NotFound} />
         </Switch>

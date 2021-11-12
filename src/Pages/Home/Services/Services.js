@@ -1,19 +1,11 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Spinner } from 'react-bootstrap';
-import toast from 'react-hot-toast';
+import useServices from '../../../hooks/useServices';
 import Service from '../service/Service';
 import './Services.css';
 
 const Services = () => {
-  const [services, setServices] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get('https://genius-car--mechanics.herokuapp.com/all-services')
-      .then((res) => setServices(res.data))
-      .catch((err) => toast.error(err.message));
-  }, []);
+  const [services] = useServices();
 
   return (
     <section className='container section__margin' id='services'>
