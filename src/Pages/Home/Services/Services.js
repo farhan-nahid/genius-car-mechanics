@@ -10,9 +10,7 @@ const Services = () => {
 
   useEffect(() => {
     axios
-      .get(
-        'https://raw.githubusercontent.com/farhan-nahid/genius-car-mechanics-client/main/src/assets/fakeData/services.json'
-      )
+      .get('https://genius-car--mechanics.herokuapp.com/all-services')
       .then((res) => setServices(res.data))
       .catch((err) => toast.error(err.message));
   }, []);
@@ -25,7 +23,7 @@ const Services = () => {
           {
             // map data
             services.map((service) => (
-              <Service key={service.id} service={service} />
+              <Service key={service._id} service={service} />
             ))
           }
         </div>

@@ -3,18 +3,18 @@ import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import './Service.css';
 
-const Service = ({ service: { id, name, price, description, img } }) => {
+const Service = ({ service: { _id, name, price, description, image } }) => {
   const history = useHistory();
   return (
     <div className='card'>
-      <img src={img} alt={name} />
+      <img src={image} alt={name} />
       <div className='card__content'>
         <h3>{name}</h3>
         <h5>Price: {price}</h5>
         <p>{description}</p>
         <Button
           variant='warning'
-          onClick={() => history.push(`/booking/${id}`)}
+          onClick={() => history.push(`/booking/${_id}`)}
         >
           Book {name.toLowerCase()}
         </Button>
