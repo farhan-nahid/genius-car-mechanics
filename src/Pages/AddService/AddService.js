@@ -1,15 +1,15 @@
 import axios from 'axios';
-import React from 'react';
+import * as React from 'react';
 import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../hooks/useAuth';
 
 const AddService = () => {
   const { loggedInUser } = useAuth();
-  console.log(loggedInUser);
+
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    if (loggedInUser?.email === 'nahidahmed9933@gmail.com') {
+    if (loggedInUser.email === 'nahidahmed9933@gmail.com') {
       axios
         .post('https://genius-car--mechanics.herokuapp.com/add-services', data)
         .then((res) => {
